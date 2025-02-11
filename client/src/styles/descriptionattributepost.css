@@ -1,0 +1,79 @@
+ /* Estilos base */
+.description-container {
+    width: 100%;
+    max-width: 1200px; /* Limita el ancho máximo para pantallas grandes */
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f9f9f9; /* Fondo claro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    
+}
+
+.description-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Color de texto oscuro */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.attributes-list {
+    list-style: none; /* Elimina los puntos de la lista */
+    padding: 0;
+    margin: 0;
+}
+
+.attribute-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Línea divisoria entre elementos */
+    font-size: 16px;
+    color: #555; /* Color de texto gris */
+}
+
+.attribute-item:last-child {
+    border-bottom: none; /* Elimina la línea del último elemento */
+}
+
+.attribute-key {
+    font-weight: bold;
+    color: #4c93af; /* Color azul para las claves */
+}
+
+.attribute-value {
+    color: #333; /* Color oscuro para los valores */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .description-container {
+        padding: 15px;
+    }
+
+    .description-title {
+        font-size: 20px;
+    }
+
+    .attribute-item {
+        flex-direction: column; /* Cambia a disposición vertical en pantallas pequeñas */
+        align-items: flex-start;
+        padding: 8px;
+    }
+
+    .attribute-key {
+        margin-bottom: 5px; /* Espacio entre clave y valor en móviles */
+    }
+}
+
+@media (max-width: 480px) {
+    .description-title {
+        font-size: 18px;
+    }
+
+    .attribute-item {
+        font-size: 14px;
+    }
+}

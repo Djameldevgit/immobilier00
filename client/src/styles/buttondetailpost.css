@@ -1,0 +1,21 @@
+.details-button {
+  background-color: #4c93af; /* Nuevo color de fondo */
+  border: none; /* Sin borde */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  text-align: center; /* Alineación del texto */
+  text-decoration: none; /* Sin subrayado */
+  display: block; /* Mostrar como bloque (ocupa todo el ancho disponible) */
+  width: 100%; /* Ocupar el 100% del ancho del contenedor */
+  font-size: 16px; /* Tamaño de la fuente */
+  margin: 0; /* Eliminar margen exterior */
+  cursor: pointer; /* Cambiar el cursor al pasar el ratón */
+  border-radius: 12px; /* Bordes redondeados */
+  transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
+
+.details-button:hover {
+  background-color: #3a7a8f; /* Nuevo color de fondo al pasar el ratón */
+}
+
+ 
