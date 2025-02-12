@@ -2,13 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Menu from './Menu'
 import Search from './Search'
-
-import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux';
-const Header = () => {
-    const {languageReducer} = useSelector(state=>state)
-     const { t } = useTranslation()
+import { useTranslation } from 'react-i18next'
+
+  
     
+const Header = () => { 
+    const {languageReducer} = useSelector(state=>state)
+      const { t } = useTranslation()
      return (
         <div className="header">
             <nav className="navbar navbar-expand-lg   

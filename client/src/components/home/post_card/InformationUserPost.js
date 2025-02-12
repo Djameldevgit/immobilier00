@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
- 
+import { useTranslation } from 'react-i18next'
 const InformationUserPost = ({ post }) => {
     const { auth } = useSelector(state => state);
-
+    const { languageReducer } = useSelector(state => state)
+    const { t } = useTranslation()
     const [visibility, setVisibility] = useState({
         showNormalName: false,
         showNormalEmail: false,
@@ -40,45 +41,52 @@ const InformationUserPost = ({ post }) => {
     };
 
     return (
-        <div className="info-contact-container">
-            <div className="info-contact-card">
-                <h3 className="info-contact-title">
-                    <i className="fas fa-user"></i> Contact & Coordonnés
+        <div
+            className="info-contact-container">
+            <div className="info-contact-card" >
+                <h3 className="info-contact-title" style={{
+                    display: 'flex',
+                    justifyContent: languageReducer.language === 'ar' ? 'right' : 'flex-start', // Alinea a la derecha si es árabe
+                    flexDirection: 'row', // Para alinear los hijos verticalmente
+                }}>
+                     {t('contact', { lng: languageReducer.language })}
                 </h3>
 
-                {/* Nombre de usuario */}
-                <div className="info-contact-item">
+                <div className="info-contact-item" style={{
+                    display: 'flex',
+                    justifyContent: languageReducer.language === 'ar' ? 'right' : 'flex-start', // Alinea a la derecha si es árabe
+                    flexDirection: 'row', // Para alinear los hijos verticalmente
+                }}>
                     <i className="fas fa-user"></i>
                     <p style={getVisibilityStyle('showNormalName')}>{post.user.username}</p>
                     {canToggleName && (
                         <button onClick={() => handleToggle('showNormalName')} className="toggle-button">
-                            {visibility.showNormalName ? 'Masquer' : 'Afficher'}
+                            {visibility.showNormalName ? t('hide', { lng: languageReducer.language }) : t('show', { lng: languageReducer.language })}
                         </button>
                     )}
                 </div>
- 
 
-                {/* Teléfono */}
-                <div className="info-contact-item">
+                <div className="info-contact-item"  >
                     <i className="fas fa-phone"></i>
                     <p style={getVisibilityStyle('showNormalPhone')}>{post.telefono}</p>
                     {canTogglePhone && (
                         <button onClick={() => handleToggle('showNormalPhone')} className="toggle-button">
-                            {visibility.showNormalPhone ? 'Masquer' : 'Afficher'}
+                            {visibility.showNormalPhone ? t('hide', { lng: languageReducer.language }) : t('show', { lng: languageReducer.language })}
                         </button>
                     )}
                 </div>
 
-                {/* Email */}
+
                 <div className="info-contact-item">
                     <i className="fas fa-envelope"></i>
                     <p style={getVisibilityStyle('showNormalEmail')}>{post.email}</p>
                     {canToggleEmail && (
                         <button onClick={() => handleToggle('showNormalEmail')} className="toggle-button">
-                            {visibility.showNormalEmail ? 'Masquer' : 'Afficher'}
+                            {visibility.showNormalEmail ? t('hide', { lng: languageReducer.language }) : t('show', { lng: languageReducer.language })}
                         </button>
                     )}
                 </div>
+
             </div>
         </div>
     );

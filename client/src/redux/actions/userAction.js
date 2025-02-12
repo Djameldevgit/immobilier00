@@ -1,9 +1,8 @@
-import { DeleteData, GLOBALTYPES } from './globalTypes';
+import {  GLOBALTYPES } from './globalTypes';
 import { imageUpload } from '../../utils/imageUpload';
 import { getDataAPI, patchDataAPI, deleteDataAPI, postDataAPI } from '../../utils/fetchData';
-import { removeNotify, createNotify } from './notifyAction';
-
-
+import { removeNotify } from './notifyAction';
+ 
 export const USER_TYPES = {
     LOADING_USER: 'LOADING_USER',
     GET_USERS: 'GET_USERS',

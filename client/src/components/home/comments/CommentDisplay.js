@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import CommentCard from './CommentCard'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux';
+
+
 
 const CommentDisplay = ({comment, post, replyCm}) => {
+    
     const [showRep, setShowRep] = useState([])
     const [next, setNext] = useState(1)
-
+    const {languageReducer} = useSelector(state=>state)
+    const { t } = useTranslation()
     useEffect(() => {
         setShowRep(replyCm.slice(replyCm.length - next))
     },[replyCm, next])
@@ -25,19 +31,20 @@ const CommentDisplay = ({comment, post, replyCm}) => {
                         ))
                     }
 
-                    {
-                        replyCm.length - next > 0
-                        ? <div style={{cursor: 'pointer', color: 'crimson'}}
-                        onClick={() => setNext(next + 10)}>
-                            See more comments...
-                        </div>
+{ 
+    replyCm.length - next > 0
+    ? <div style={{ cursor: 'pointer', color: 'crimson' }}
+        onClick={() => setNext(next + 10)}>
+        {t('seeMoreComments', { lng: languageReducer.language })}
+      </div>
 
-                        : replyCm.length > 1 &&
-                        <div style={{cursor: 'pointer', color: 'crimson'}}
-                        onClick={() => setNext(1)}>
-                            Hide comments...
-                        </div>
-                    }
+    : replyCm.length > 1 &&
+      <div style={{ cursor: 'pointer', color: 'crimson' }}
+        onClick={() => setNext(1)}>
+        {t('hideComments', { lng: languageReducer.language })}
+      </div>
+}
+
                 </div>
             </CommentCard>
         </div>

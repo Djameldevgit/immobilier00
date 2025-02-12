@@ -17,7 +17,7 @@ import CardBodyTitle from './home/post_card/CardBodyTitle';
     const isPostDetailPage = location.pathname.startsWith(`/post/${post._id}`);
     return (
         <div className="card my-3">
-            <CardHeader post={post} />
+         
             <CardBodyTitle  post={post}/>
             <CardBodyCarousel post={post} theme={theme} />
             <CardFooterCommentLikes post={post} />

@@ -5,8 +5,8 @@
   padding: 10px 20px; /* Espaciado interno */
   text-align: center; /* Alineación del texto */
   text-decoration: none; /* Sin subrayado */
-  display: block; /* Mostrar como bloque (ocupa todo el ancho disponible) */
-  width: 100%; /* Ocupar el 100% del ancho del contenedor */
+  display: flex; /* Mostrar como bloque (ocupa todo el ancho disponible) */
+  width: auto; /* Ocupar el 100% del ancho del contenedor */
   font-size: 16px; /* Tamaño de la fuente */
   margin: 0; /* Eliminar margen exterior */
   cursor: pointer; /* Cambiar el cursor al pasar el ratón */

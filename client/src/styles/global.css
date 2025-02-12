@@ -87,7 +87,7 @@ img {
 @import url("./annoncecategories.css");
 @import url("./dropdownnavbar.css");
 @import url("./notificaciones.css");
-
+@import url("./cardtitle.css");
 
 /* --------- Responsive ------ */
 @media (max-width: 766px){
@@ -135,13 +135,7 @@ img {
   overflow: hidden;
 }
 
-
-@media (max-width: 800px){
-  .visualizacion-button .details-button {
-    display: none;
-  }
-  }
-
+ 
   
    
    .header .imagelogo {

@@ -1,41 +1,86 @@
 import React from 'react';
- 
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+
 const DescriptionPost = ({ post }) => {
+    const { languageReducer } = useSelector(state => state);
+    const { t } = useTranslation();
+
+    // Extraer idioma correctamente
+    const language = languageReducer.language || "en";
+
     return (
-        <div className="description-container">
-            <h3 className="description-title">Detalles del Post</h3>
-            <div className="post-info">
-                <div className="info-item">
+        <div className="description-container" >
+            <h3 className="description-title" style={{
+            display: 'flex',
+            justifyContent: languageReducer.language === 'ar' ? 'right' : 'flex-start', // Alinea a la derecha si es árabe
+            flexDirection: 'row', // Para alinear los hijos verticalmente
+        }} >{t("details", { lng: language })}</h3>
+            <div className="post-info"  >
+                
+                <div className="info-item" style={{
+                    display: 'flex',
+                    justifyContent: languageReducer.language === 'ar' ? 'right' : 'flex-start', // Alinea a la derecha si es árabe
+                    flexDirection: 'row', // Para alinear los hijos verticalmente
+                }}>
                     <i className="fas fa-comment"></i>
-                    <span>Comentarios: {post.comments.length || "0"}</span>
+                    <span>{t("comments", { lng: language })}: {post.comments.length || t("notSpecified", { lng: language })}</span>
                 </div>
-                <div className="info-item">
+                <div className="info-item"style={{
+                    display: 'flex',
+                    justifyContent: languageReducer.language === 'ar' ? 'right' : 'flex-start', // Alinea a la derecha si es árabe
+                    flexDirection: 'row', // Para alinear los hijos verticalmente
+                }}>
                     <i className="fas fa-thumbs-up"></i>
-                    <span>Likes: {post.likes.length || "0"}</span>
+                    <span>{t("likes", { lng: language })}: {post.likes.length || t("notSpecified", { lng: language })}</span>
                 </div>
-                <div className="info-item">
+                <div className="info-item"style={{
+                    display: 'flex',
+                    justifyContent: languageReducer.language === 'ar' ? 'right' : 'flex-start', // Alinea a la derecha si es árabe
+                    flexDirection: 'row', // Para alinear los hijos verticalmente
+                }}>
                     <i className="fas fa-map"></i>
-                    <span>Ubicación: {post.commune || "No especificado"}</span>
+                    <span>{t("location", { lng: language })}: {post.commune || t("notSpecified", { lng: language })}</span>
                 </div>
-                <div className="info-item">
+                <div className="info-item"style={{
+                    display: 'flex',
+                    justifyContent: languageReducer.language === 'ar' ? 'right' : 'flex-start', // Alinea a la derecha si es árabe
+                    flexDirection: 'row', // Para alinear los hijos verticalmente
+                }}>
                     <i className="fas fa-envelope"></i>
-                    <span>Email: {post.email || "No especificado"}</span>
+                    <span>{t("email", { lng: language })}: {post.email || t("notSpecified", { lng: language })}</span>
                 </div>
-                <div className="info-item">
+                <div className="info-item"style={{
+                    display: 'flex',
+                    justifyContent: languageReducer.language === 'ar' ? 'right' : 'flex-start', // Alinea a la derecha si es árabe
+                    flexDirection: 'row', // Para alinear los hijos verticalmente
+                }}>
                     <i className="fas fa-user-circle"></i>
-                    <span>Vendedor: {post.informacion || "No especificado"}</span>
+                    <span>{t("seller", { lng: language })}: {post.informacion || t("notSpecified", { lng: language })}</span>
                 </div>
-                <div className="info-item">
+                <div className="info-item"style={{
+                    display: 'flex',
+                    justifyContent: languageReducer.language === 'ar' ? 'right' : 'flex-start', // Alinea a la derecha si es árabe
+                    flexDirection: 'row', // Para alinear los hijos verticalmente
+                }}>
                     <i className="fas fa-comments"></i>
-                    <span>Permitir comentarios: {post.comentarios || "No especificado"}</span>
+                    <span>{t("allowComments", { lng: language })}: {post.comentarios || t("notSpecified", { lng: language })}</span>
                 </div>
-                <div className="info-item">
+                <div className="info-item"style={{
+                    display: 'flex',
+                    justifyContent: languageReducer.language === 'ar' ? 'right' : 'flex-start', // Alinea a la derecha si es árabe
+                    flexDirection: 'row', // Para alinear los hijos verticalmente
+                }}>
                     <i className="fas fa-eye"></i>
-                    <span>Visitas: {post.contadordevisitas || "No especificado"}</span>
+                    <span>{t("views", { lng: language })}: {post.contadordevisitas || t("notSpecified", { lng: language })}</span>
                 </div>
-                <div className="info-item">
+                <div className="info-item"style={{
+                    display: 'flex',
+                    justifyContent: languageReducer.language === 'ar' ? 'right' : 'flex-start', // Alinea a la derecha si es árabe
+                    flexDirection: 'row', // Para alinear los hijos verticalmente
+                }}>
                     <i className="fas fa-clock"></i>
-                    <span>Duración del anuncio: {post.duraciondelanuncio || "No especificado"}</span>
+                    <span>{t("adDuration", { lng: language })}: {post.duraciondelanuncio || t("notSpecified", { lng: language })}</span>
                 </div>
             </div>
         </div>

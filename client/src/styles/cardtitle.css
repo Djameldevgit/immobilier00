@@ -1,0 +1,34 @@
+.card_body {
+    font-family: 'Arial', sans-serif; /* Fuente moderna */
+    padding: 16px;
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    display: flex; /* Flexbox para alinear en línea */
+    justify-content: space-between; /* Espacio entre títulos y el icono */
+    align-items: center; /* Centra verticalmente los elementos */
+}
+
+.titles_container {
+    display: flex; /* Flexbox para alinear títulos en línea */
+    align-items: baseline; /* Alinea los textos en la base */
+    gap: 8px; /* Espacio entre los títulos */
+}
+
+.title0 {
+    font-size: 18px; /* Tamaño para el título principal */
+    font-weight: 700; /* Negrita */
+    color: #333333; /* Color oscuro para el texto */
+}
+
+.title2 {
+    font-size: 16px; /* Tamaño para el subtítulo */
+    font-weight: 400; /* Peso normal */
+    color: #666666; /* Color más claro para el subtítulo */
+}
+
+.card-header {
+    display: flex;
+    align-items: center; /* Centra el icono verticalmente */
+    margin-left: 16px; /* Espacio entre los títulos y el icono */
+}

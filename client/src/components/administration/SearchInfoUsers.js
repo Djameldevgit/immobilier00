@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import LoadIcon from '../../../images/loading.gif';
-import LoadMoreBtn from '../../LoadMoreBtn';
-import { getDataAPI } from '../../../utils/fetchData';
-import { deleteUser, viewUserDetails, editUser, USER_TYPES } from '../../../redux/actions/userAction';
- import UserCard2 from '../../UserCard2';
-import ListUsersTotal from './ListUsersTotal';
-import PostsTotalCount from './PostsTotalCount';
-import Postspendientescount from './Postspendientescount';
+import LoadIcon from '../../images/loading.gif';
+import LoadMoreBtn from '../LoadMoreBtn';
+import { getDataAPI } from '../../utils/fetchData';
+import { deleteUser, viewUserDetails, editUser, USER_TYPES } from '../../redux/actions/userAction';
+import UserCard from '../UserCard';
  
 
 // Función para formatear la fecha en un formato legible
@@ -45,10 +42,7 @@ const SearchInfoUsers = () => {
   return (
     <div className="container mt-5">
      
-      <ListUsersTotal />
-      <PostsTotalCount />
-      <Postspendientescount />
-
+      
       {/* Formulario de búsqueda */}
       <div className="row mb-4">
         <div className="col-md-12">
@@ -81,7 +75,7 @@ const SearchInfoUsers = () => {
             {filteredUsers.map((user, index) => (
               <tr key={user._id}>
                 <td>{index + 1}</td>
-                <td><UserCard2 user={user} /></td>
+                <td><UserCard user={user} /></td>
                 <td>{user.email}</td>
                 <td>{formatDate(user.createdAt)}</td>
                

@@ -6,8 +6,12 @@ import { GLOBALTYPES } from '../../redux/actions/globalTypes'
 import Avatar from '../Avatar'
 import NotifyModal from '../NotifyModal'
 import LanguageSelector from '../LanguageSelector'
- 
+//import { useTranslation } from 'react-i18next'
+
 const Menu = () => {
+    //const {languageReducer} = useSelector(state=>state)
+    //  const { t } = useTranslation()
+
     const navLinks = [
         { label: 'Home', icon: 'home', path: '/' },
         { label: 'Message', icon: 'near_me', path: '/message' },
@@ -67,11 +71,11 @@ const Menu = () => {
                         <div className='language'>
                             <LanguageSelector />
                         </div>
-
+                        <Link className="dropdown-item" to='/users/searchusers'> search users</Link>
                         <Link className="dropdown-item" to='/annonces'> Ajoute un annonce</Link>
                         <Link className="dropdown-item" to="/postsPendientes">posts pendientes</Link>
                         <Link className="dropdown-item" to={`/profile/${auth.user._id}`}>Profile</Link>
-                      
+
                         <label htmlFor="theme" className="dropdown-item"
                             onClick={() => dispatch({
                                 type: GLOBALTYPES.THEME, payload: !theme
