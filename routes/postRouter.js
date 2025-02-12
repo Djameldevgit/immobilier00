@@ -4,7 +4,7 @@ const auth = require('../middleware/auth')
 
 router.post('/posts', auth,postCtrl.crearPostPendiente)
 router.get('/posts/pendientes', auth,postCtrl.getPostsPendientes)
-router.patch('/post/:id', auth,postCtrl.aprobarPostPendiente)
+router.patch('/aprovarpost/:id/aprovado', auth, postCtrl.aprobarPostPendiente);
 
 router.get('/posts', auth,postCtrl.getPosts)
 

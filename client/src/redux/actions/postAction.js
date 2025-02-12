@@ -4,7 +4,7 @@ import { getDataAPI, patchDataAPI, deleteDataAPI } from '../../utils/fetchData'
 import { createNotify, removeNotify } from './notifyAction'
 
 export const POST_TYPES = {
- 
+    LOADING_POST:'LOADING_POST',
     GET_POSTS: 'GET_POSTS',
     UPDATE_POST: 'UPDATE_POST',
     GET_POST: 'GET_POST',
@@ -12,7 +12,6 @@ export const POST_TYPES = {
 }
 
  
-
 
 export const getPosts = (token) => async (dispatch) => {
     try {
@@ -33,9 +32,9 @@ export const getPosts = (token) => async (dispatch) => {
     }
 }
 
-export const updatePost = ({ postData, images, auth, status }) => async (dispatch) => {
-    console.log(postData); // Verifica qué valores estás enviando en el postData
 
+export const updatePost = ({ postData, images, auth, status }) => async (dispatch) => {
+    
     let media = [];
     const imgNewUrl = images.filter(img => !img.url);
     const imgOldUrl = images.filter(img => img.url);

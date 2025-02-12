@@ -11,14 +11,16 @@ export const POST_TYPES_APROVE = {
    
 }
 
+ 
 
-export const crearPostPendiente = ({postData, images, auth, socket}) => async (dispatch) => {
+export const crearPostPendiente = ({postData, images, auth, socket }) => async (dispatch) => {
     let media = []
     try {
         dispatch({ type: GLOBALTYPES.ALERT, payload: {loading: true} })
         if(images.length > 0) media = await imageUpload(images)
 
         const res = await postDataAPI('posts', { postData, images: media }, auth.token)
+ 
 
         dispatch({ 
             type: POST_TYPES_APROVE.CREAR_POST_PENDIENTE, 
@@ -26,19 +28,22 @@ export const crearPostPendiente = ({postData, images, auth, socket}) => async (d
         })
 
         dispatch({ type: GLOBALTYPES.ALERT, payload: {loading: false} })
+        dispatch({ type: GLOBALTYPES.ALERT, payload: {success: res.data.msg} })
 
-        // Notify
+        // Notificación
         const msg = {
             id: res.data.newPost._id,
             text: 'added a new post.',
             recipients: res.data.newPost.user.followers,
             url: `/post/${res.data.newPost._id}`,
-            title:postData.title, 
-            image: media[0].url
+            title: postData.title, 
+            image: media[0]?.url
         }
 
         dispatch(createNotify({msg, auth, socket}))
 
+        // 🔥 Redirigir a Home después de publicar el post
+        
     } catch (err) {
         dispatch({
             type: GLOBALTYPES.ALERT,
@@ -46,14 +51,13 @@ export const crearPostPendiente = ({postData, images, auth, socket}) => async (d
         })
     }
 }
- 
 
-export const aprovarPostPendiente = ({ post,estado, auth }) => async (dispatch) => {
+
+export const aprovarPostPendiente = ({post, estado, auth}) => async (dispatch) => {
     try {
         dispatch({ type: POST_TYPES_APROVE.LOADING_POST, payload: true });
  
-        const res = await patchDataAPI(`post/${post._id}`, {estado:"aprobado"}, auth.token);
-
+        const res = await patchDataAPI(`aprovarpost/${post._id}/aprovado`, { estado }, auth.token);
         dispatch({
             type: POST_TYPES_APROVE.APROVAR_POST_PENDIENTE,
             payload: res.data,

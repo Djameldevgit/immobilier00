@@ -30,7 +30,7 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
 
 
         //NAVBAR
-   
+        "realestate": "IMMOBILIER",
         "post": "Publish a post",
         "usermanagement": "User management",
         "complaints": "complaints",
@@ -56,15 +56,7 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
     fr: {
       translation: {
 
-        "relativeTime": {
-          "past": "il y a {{count}} minutes",
-          "s": "il y a un moment",
-          "m": "il y a une minute",
-          "mm": "il y a {{count}} minutes",
-          "h": "il y a une heure",
-          "hh": "il y a {{count}} heures",
-
-        },
+        "realestate": "IMMOBILIER",
         //REGISTER
       
         "username": "Nom d'utilisateur",

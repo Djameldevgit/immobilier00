@@ -19,7 +19,7 @@ import peer from './peerReducer'
  
 import languageReducer from './languageReducer';
 import homePostsAprove from './posAprovetReducer'
- 
+import homeUsers from './userReducer'
 
 export default combineReducers({
     auth,
@@ -38,5 +38,5 @@ export default combineReducers({
     online,
     call,
     peer,
-    languageReducer,homePostsAprove
+    languageReducer,homePostsAprove,homeUsers
 })

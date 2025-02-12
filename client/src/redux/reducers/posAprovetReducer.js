@@ -1,6 +1,5 @@
 import { POST_TYPES_APROVE } from '../actions/postAproveAction';
-import { EditData } from '../actions/globalTypes'
-
+ 
 const initialState = {
     loading: false,
     posts: [],
@@ -16,11 +15,15 @@ const postAproveReducer = (state = initialState, action) => {
                 posts: [action.payload, ...state.posts]
             };
         case POST_TYPES_APROVE.APROVAR_POST_PENDIENTE:
-            return {
+               const updatedpost = state.posts.map((post) =>
+                post._id === action.payload._id
+                  ? { ...post, estado: 'aprobado' }
+                  : post
+              );
+              return {
                 ...state,
-                posts: EditData(state.posts, action.payload._id, action.payload)
-            };
-
+                posts: updatedpost,
+              };
         case POST_TYPES_APROVE.LOADING_POST:
             return {
                 ...state,

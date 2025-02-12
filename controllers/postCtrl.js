@@ -53,20 +53,16 @@ const postCtrl = {
     aprobarPostPendiente: async (req, res) => {
         try {
             const post = await Posts.findById(req.params.id);
-            if (!post) return res.status(404).json({ msg: 'Publicación no encontrada.' });
-
-            post.estado = estado;
+            if (!post) return res.status(404).json({ msg: 'Publicación no encontrada' });
+    
+            post.estado = 'aprobado';
             await post.save();
-
-            res.json({
-                msg: 'Post aprobado correctamente.',
-                _id: post._id,
-            });
+            // Envia el _id del post aprobado en la respuesta
+            res.json({ msg: 'Poste approuvé!', _id: post._id });
         } catch (err) {
             return res.status(500).json({ msg: err.message });
         }
     },
-    
  
 getPostsPendientes: async (req, res) => {
     try {
@@ -96,8 +92,8 @@ getPostsPendientes: async (req, res) => {
 
     getPosts: async (req, res) => {
         try {
-            const features =  new APIfeatures(Posts.find(), req.query).paginating()
-
+            const features =  new APIfeatures(Posts.find({ estado: "aprobado" }), req.query).paginating()
+           
             const posts = await features.query.sort('-createdAt')
             .populate("user likes", "avatar username   followers")
             .populate({
@@ -113,7 +109,7 @@ getPostsPendientes: async (req, res) => {
                 result: posts.length,
                 posts
             })
-
+ 
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
@@ -180,7 +176,7 @@ getPostsPendientes: async (req, res) => {
     },
     getUserPosts: async (req, res) => {
         try {
-            const features = new APIfeatures(Posts.find({user: req.params.id, estado:"aprobado"}), req.query)
+            const features = new APIfeatures(Posts.find({user: req.params.id}, { estado:"aprobado"}), req.query)
             .paginating()
             const posts = await features.query.sort("-createdAt")
 

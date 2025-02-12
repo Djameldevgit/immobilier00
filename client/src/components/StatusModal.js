@@ -10,12 +10,11 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';  // Importar los estilos predeterminados
 import {updatePost } from '../redux/actions/postAction';
 import { crearPostPendiente } from '../redux/actions/postAproveAction';
-
-
+ 
 const StatusModal = () => {
     const { auth, theme, socket, status, } = useSelector((state) => state);
 
-
+ 
     const dispatch = useDispatch()
 
     const initilastate = {
@@ -251,6 +250,7 @@ const StatusModal = () => {
         setImages([]);
         if (tracks) tracks.stop();
         dispatch({ type: GLOBALTYPES.STATUS, payload: false });
+        
     };
 
     useEffect(() => {
