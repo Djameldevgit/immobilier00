@@ -5,7 +5,7 @@ import theme from './themeReducer'
 import profile from './profileReducer'
 import status from './statusReducer'
 import homePosts from './postReducer'
-
+ 
 import modal from './modalReducer'
 import detailPost from './detailPostReducer'
 import discover from './discoverReducer'
@@ -20,6 +20,7 @@ import peer from './peerReducer'
 import languageReducer from './languageReducer';
 import homePostsAprove from './posAprovetReducer'
 import homeUsers from './userReducer'
+import userBlockReducer from './userBlcokReducer'
 
 export default combineReducers({
     auth,
@@ -38,5 +39,5 @@ export default combineReducers({
     online,
     call,
     peer,
-    languageReducer,homePostsAprove,homeUsers
+    languageReducer,homePostsAprove,homeUsers,userBlockReducer
 })

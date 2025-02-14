@@ -10,7 +10,7 @@ const initialState = {
     counttotal: 0,
     result: 0,
     page: 2,
-    blockedUsers: [],
+    
     error: null,
 };
 
@@ -63,24 +63,8 @@ const userReducer = (state = initialState, action) => {
                 result: action.payload.result,
                 page: action.payload.page,
             };
-
-        case 'BLOCK_USER':
-            return {
-                ...state,
-                users: state.users.map((user) =>
-                    user._id === action.payload._id ? { ...user, ...action.payload } : user
-                ),
-                blockedUsers: [...state.blockedUsers, action.payload],
-            };
-
-        case 'UNBLOCK_USER':
-            return {
-                ...state,
-                users: state.users.map((user) =>
-                    user._id === action.payload._id ? { ...user, ...action.payload } : user
-                ),
-                blockedUsers: state.blockedUsers.filter((user) => user._id !== action.payload._id),
-            };
+ 
+ 
 
         case USER_TYPES.UPDATE_USER_STATUS:
             return {

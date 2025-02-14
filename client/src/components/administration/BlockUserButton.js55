@@ -1,0 +1,93 @@
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { blockUser, unblockUser } from "../../redux/actions/userAction";
+ 
+const BlockUserButton = ({ userId, isBlocked }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [reason, setReason] = useState("");
+  const [unblockedAt, setUnblockedAt] = useState("");
+
+  const dispatch = useDispatch();
+ 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isBlocked) {
+      dispatch(unblockUser(userId)); // Acción para desbloquear
+    } else {
+      dispatch(blockUser(userId, { reason, unblockedAt })); // Acción para bloquear
+    }
+    setShowModal(false);
+  };
+  
+
+  return (
+    <>
+     
+      <button
+        className={`px-4 py-2 text-white rounded ${
+          isBlocked ? "bg-green-500" : "bg-red-500"
+        }`}
+        onClick={() => setShowModal(true)}
+      >
+        {isBlocked ? "Unblock User" : "Block User"}
+      </button>
+
+   
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+          <div className="bg-white p-6 rounded shadow-lg w-96">
+            <h2 className="text-lg font-bold mb-4">
+              {isBlocked ? "Unblock User" : "Block User"}
+            </h2>
+            {!isBlocked && (
+              <form onSubmit={handleSubmit}>
+                <label className="block mb-2">
+                  Reason:
+                  <input
+                    type="text"
+                    className="border p-2 w-full"
+                    value={reason}
+                    onChange={(e) => setReason(e.target.value)}
+                    required
+                  />
+                </label>
+                <label className="block mb-2">
+                  Unblock Date (optional):
+                  <input
+                    type="datetime-local"
+                    className="border p-2 w-full"
+                    value={unblockedAt}
+                    onChange={(e) => setUnblockedAt(e.target.value)}
+                  />
+                </label>
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white px-4 py-2 rounded mt-4 w-full"
+                 
+                >
+                  
+                </button>
+              </form>
+            )}
+            {isBlocked && (
+              <button
+                onClick={handleSubmit}
+                className="bg-green-500 text-white px-4 py-2 rounded mt-4 w-full"
+                
+              >
+                </button>
+            )}
+            <button
+              onClick={() => setShowModal(false)}
+              className="mt-2 text-gray-600 underline"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default BlockUserButton;

@@ -71,6 +71,7 @@ const Menu = () => {
                         <div className='language'>
                             <LanguageSelector />
                         </div>
+                        <Link className="dropdown-item" to='/bloquearusuarios'> bloquear usuarios</Link>
                         <Link className="dropdown-item" to='/users/searchusers'> search users</Link>
                         <Link className="dropdown-item" to='/annonces'> Ajoute un annonce</Link>
                         <Link className="dropdown-item" to="/postsPendientes">posts pendientes</Link>

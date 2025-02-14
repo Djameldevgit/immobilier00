@@ -38,14 +38,15 @@ io.on('connection', socket => {
  
 
 // Rutas
-app.use('/api', require('./routes/languageRouter'));
+
 app.use('/api', require('./routes/authRouter'));
 app.use('/api', require('./routes/userRouter'));
 app.use('/api', require('./routes/postRouter'));
 app.use('/api', require('./routes/commentRouter'));
 app.use('/api', require('./routes/notifyRouter'));
 app.use('/api', require('./routes/messageRouter'));
-
+app.use('/api', require('./routes/languageRouter'));
+app.use('/api', require('./routes/blockUserRouter'));
 // Conexión a MongoDB
 const URI = process.env.MONGODB_URL;
 mongoose.connect(URI, {

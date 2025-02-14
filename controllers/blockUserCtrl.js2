@@ -1,0 +1,94 @@
+const Users = require('../models/userModel')
+class APIfeatures {
+    constructor(query, queryString) {
+        this.query = query;
+        this.queryString = queryString;
+    }
+
+    paginating() {
+        const page = this.queryString.page * 1 || 1
+        const limit = this.queryString.limit * 1 || 9
+        const skip = (page - 1) * limit
+        this.query = this.query.skip(skip).limit(limit)
+        return this;
+    }
+}
+
+const blockUserCtrl = {
+
+
+    // 🔒 Bloquear un usuario
+    blockUser: async (req, res) => {
+        try {
+            const { reason, blockedAt, unblockedAt } = req.body;
+            
+            const user = await Users.findByIdAndUpdate( { _id: req.params.id },
+                {
+                    isBlocked: true,
+                    blockReason: reason,
+                    blockedAt,
+                    unblockedAt
+                },
+                { new: true }
+            );
+
+            if (!user) return res.status(404).json({ msg: "Usuario no encontrado" });
+
+            res.json({
+                msg: "Usuario bloqueado con éxito",
+                user
+            });
+        } catch (err) {
+            return res.status(500).json({ msg: err.message });
+        }
+    },
+
+    // 🔓 Desbloquear un usuario
+    unblockUser: async (req, res) => {
+        try {
+            const userId = req.params.id;
+
+            const user = await Users.findByIdAndUpdate(
+                userId,
+                {
+                    isBlocked: false,
+                    blockReason: '',
+                    blockedAt: null,
+                    unblockedAt: new Date()
+                },
+                { new: true }
+            );
+
+            if (!user) return res.status(404).json({ msg: "Usuario no encontrado" });
+
+            res.json({
+                msg: "Usuario desbloqueado con éxito",
+                user
+            });
+        } catch (err) {
+            return res.status(500).json({ msg: err.message });
+        }
+    },
+
+    getUsersBlcok: async (req, res) => {
+
+        try {
+            const features = new APIfeatures(Users.find({ blockInfo:{isBlocked: true} }), req.query).paginating()
+
+            const blockedUsers = await features.query.sort('-createdAt')
+ 
+            res.json({
+                msg: 'Success!hhhh',
+                result: blockedUsers.length,
+                blockedUsers
+            })
+            console.log(blockedUsers)
+        } catch (err) {
+            return res.status(500).json({ msg: err.message })
+        }
+    },
+
+
+}
+
+module.exports = blockUserCtrl

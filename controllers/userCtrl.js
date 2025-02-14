@@ -592,7 +592,7 @@ const userCtrl = {
             // Guarda los cambios en la base de datos
             await user.save();
 
-            return res.status(200).json({ msg: 'Usuario bloqueado exitosamente.', blockData });
+            return res.status(200).json({ msg: 'Usuario bloqueado exitosamente controlador .', blockData });
         } catch (error) {
             return res.status(500).json({ msg: error.message });
         }

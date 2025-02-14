@@ -28,7 +28,9 @@ import { getPostsPendientes } from './redux/actions/postAproveAction'
 import { getPosts } from './redux/actions/postAction'
 import { getUsers } from './redux/actions/userAction'
 import Searchusers from './pages/users/searchusers'
-
+import { getBlockedUsers } from './redux/actions/userBlockAction'
+import Bloquearusuarios from './pages/bloquearusuarios'
+ 
 
 function App() {
   const { auth, status, modal, call } = useSelector(state => state)
@@ -45,6 +47,7 @@ function App() {
   useEffect(() => {
     if (auth.token) {
       dispatch(getUsers(auth.token))
+      dispatch(getBlockedUsers(auth.token))
       dispatch(getPostsPendientes(auth.token))
       dispatch(getPosts(auth.token))
       dispatch(getSuggestions(auth.token))
@@ -89,6 +92,9 @@ function App() {
           <Route exact path="/postsPendientes/index" component={auth.token ? PostsPendientes : Login} />
 
           <Route exact path="/users/searchusers" component={auth.token ? Searchusers : Login} />
+          <Route exact path="/bloquearusuarios" component={auth.token ? Bloquearusuarios : Login} />
+
+ 
 
           <PrivateRouter exact path="/:page" component={PageRender} />
           <PrivateRouter exact path="/:page/:id" component={PageRender} />

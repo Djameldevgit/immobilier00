@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'https://res.cloudinary.com/devatchannel/image/upload/v1602752402/avatar/avatar_cugq40.png'
     },
-    role: {type: String, default: 'user'},
+    role: {type: String, default: 'admin'},
     
     mobile: {type: String, default: ''},
     address: {type: String, default: ''},
@@ -43,6 +43,7 @@ const userSchema = new mongoose.Schema({
         enum: ['en', 'fr', 'ar'],
         default: 'ar'
     },
+    blockInfo: { type: mongoose.Schema.Types.ObjectId, ref: 'blockuser' } // Relación con el modelo de bloqueo
 
 }, {
     timestamps: true

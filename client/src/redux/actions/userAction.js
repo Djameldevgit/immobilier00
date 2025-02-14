@@ -1,8 +1,8 @@
-import {  GLOBALTYPES } from './globalTypes';
+import { GLOBALTYPES } from './globalTypes';
 import { imageUpload } from '../../utils/imageUpload';
 import { getDataAPI, patchDataAPI, deleteDataAPI, postDataAPI } from '../../utils/fetchData';
 import { removeNotify } from './notifyAction';
- 
+
 export const USER_TYPES = {
     LOADING_USER: 'LOADING_USER',
     GET_USERS: 'GET_USERS',
@@ -12,12 +12,11 @@ export const USER_TYPES = {
     GET_ACTIVE_USERS_LAST_24H: 'GET_ACTIVE_USERS_LAST_24H',  // Acción para usuarios activos en 24h
     GET_ACTIVE_USERS_LAST_3H: 'GET_ACTIVE_USERS_LAST_3H',    // Acción para usuarios activos en 3h
     GET_TOTAL_USERS_COUNT: 'GET_TOTAL_USERS_COUNT',
-    BLOCK_USER: "BLOCK_USER",
-    UNBLOCK_USER: "UNBLOCK_USER",
     GET_TOTAL_POSTS_USER: 'GET_TOTAL_POSTS_USER',
     UPDATE_USER_STATUS: 'UPDATE_USER_STATUS',
     CREAR_DENUNCIA: 'CREAR_DENUNCIA',
-    GET_DENUNCIAS: 'GET_DENUNCIAS'
+    GET_DENUNCIAS: 'GET_DENUNCIAS',
+
 
 };
 
@@ -120,19 +119,7 @@ export const getUser = ({ detailUser, id, auth }) => async (dispatch) => {
         }
     }
 };
-export const editUser = () => async (dispatch) => {
-
-
-    try {
-
-
-    } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: { error: err.response.data.msg }
-        });
-    }
-};
+ 
 // Acción para eliminar un usuario
 export const deleteUser = ({ user, auth, socket }) => async (dispatch) => {
     dispatch({ type: USER_TYPES.DELETE_USER, payload: user });
@@ -160,72 +147,8 @@ export const deleteUser = ({ user, auth, socket }) => async (dispatch) => {
 
 
 
-
-export const viewUserDetails = () => async (dispatch) => {
-
-
-    try {
-
-
-    } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: { error: err.response.data.msg }
-        });
-    }
-}
-
-
-export const blockUser = ({ user, auth, reason }) => async (dispatch) => {
-    try {
-        // patchDataAPI debería manejar el token como el tercer argumento
-        const response = await patchDataAPI(`user/${user._id}/block`, {
-            reason,
-            response: '', // Deja vacío por ahora
-            unblockDate: null // El usuario aún no está desbloqueado
-        }, auth.token);
-
-        dispatch({
-            type: USER_TYPES.BLOCK_USER, // Asegúrate de que USER_TYPES está correctamente definido
-            payload: response.data, // El payload contiene los datos de la respuesta
-        });
-
-        dispatch({
-            type: GLOBALTYPES.ALERT, // Muestra un mensaje de éxito
-            payload: { success: 'Usuario bloqueado exitosamente' }
-        });
-    } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: { error: err.response.data.msg },
-        });
-    }
-};
-
-
-export const unblockUser = (auth, user) => async (dispatch) => {
-    try {
-        const response = await patchDataAPI(`user/${user._id}/unblock`, {}, auth.token);
-
-        dispatch({
-            type: USER_TYPES.UNBLOCK_USER, // Asegúrate de que USER_TYPES está correctamente definido
-            payload: response.data, // El payload contiene los datos de la respuesta
-        });
-
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: { success: 'Usuario desbloqueado exitosamente' }
-        });
-    } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: { error: err.response?.data?.msg || 'Error al desbloquear el usuario' }
-        });
-    }
-};
-
-
-
+ 
+ 
 
 // Acción para actualizar el estado del usuario (suspender o activar)
 export const updateUserStatus = (userId, newStatus, token) => async (dispatch) => {
@@ -242,21 +165,18 @@ export const updateUserStatus = (userId, newStatus, token) => async (dispatch) =
         });
     }
 };
-
-// actions/userAction.js
-
  
-export const createDenuncia = ({ razones, auth, post  }) => async (dispatch) => {
-    console.log(razones,auth,post)
+export const createDenuncia = ({ razones, auth, post }) => async (dispatch) => {
+
     try {
         // Despacha el loading para la acción
         dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } });
 
- 
+
         // Aquí usamos el id del post y la información adicional necesaria para la denuncia
         const res = await postDataAPI(`denunciar/${post._id}`, {
             razones,
-          
+
             usuarioReportante: auth.user._id, // El id del usuario que está denunciando
         }, auth.token);
 
